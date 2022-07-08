@@ -7,11 +7,14 @@ export const TodoList = () => {
 
 	const addList = e => {
 		if (e.key === "Enter" && e.target.value !== "") {
-			console.log(e.target.value)
+			
 			for(let i = 0; i < e.target.value.length ; i++){
 				if(e.target.value[i] != " "){
 					setlist([...list, e.target.value]);
+					setvalor("");
 					break
+				
+
 				}
 			}
 		}
@@ -32,7 +35,6 @@ export const TodoList = () => {
 					className="col-8 border none"
 					onKeyPress={addList}
 					value = {valor}
-					setvalor= {("")}
 				/>
 			</div>
 
