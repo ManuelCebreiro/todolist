@@ -1,30 +1,47 @@
-import React,{useState} from "react";
+import React, { useState, Fragment } from 'react';
 
-//create your first component
-const Home = () => {
-		const [saveText, setSaveText] = useState ([]);
-	
 
+export const TodoList = () => {
+	const [list, setlist] = useState([]);
+
+	const addList = e => {
+		if (e.key === "Enter" && e.target.value !== "") {
+			setlist([...list, e.target.value]);
+		}
+	};
+	const DeleteItems = (indexItem) => {
+		setlist((prevState) =>
+			prevState.filter((todo, index) => index !== indexItem)
+		);
+	};
 	return (
 		<div className="container text-center">
-			<h1>TODOS</h1>
-			<div className="container shadow p-3 mb-5 bg-white rounded">
-			<input type="text" placeholder="¿Qué tienes que hacer?" className="col-8 border none"
-			onKeyDown={(e)=>{ 
-				if(e.key === "Enter")
-				setSaveText([...saveText,e.target.value]);}}	
-			/>
+			<h1 className="container d-flex justify-content-center text-center col-8 bi bi-x-lg">TODOS</h1>
+			<div className="container shadow p-1 bg-white rounded col-8 bi bi-x-lg">
+				<input
+					type="text"
+					placeholder="¿Qué tienes que hacer?"
+					className="col-8 border none"
+					onKeyPress={addList}
+				/>
+			</div>
 
-			<ul class="list-group">
-			{saveText.map(elem=>{return <li class="container list-group-item col-8 bi bi-x-lg">{elem}<button type="button" class="btn-close" 
-			onClick={ (e)=>{this.delete(li)
-			}} aria-label="Close"></button></li>})}
-			</ul>
+			<div className="text-center">
+				<ul class="list-group">
+					{list.map((item, index) => (
+						<li 
+							class="container list-group-item p-1 col-8 bi bi-x-lg"
+							key={index}>
+								{item}
+							<button className="btn-close" onClick={() => DeleteItems(index)}>
+						
+							</button>
+						</li>
+					))}
+				</ul>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Home;
-
-
+export default TodoList
