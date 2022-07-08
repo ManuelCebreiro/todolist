@@ -1,26 +1,30 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React,{useState} from "react";
 
 //create your first component
 const Home = () => {
+		const [saveText, setSaveText] = useState ([]);
+	
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container text-center">
+			<h1>TODOS</h1>
+			<div className="container shadow p-3 mb-5 bg-white rounded">
+			<input type="text" placeholder="¿Qué tienes que hacer?" className="col-8 border none"
+			onKeyDown={(e)=>{ 
+				if(e.key === "Enter")
+				setSaveText([...saveText,e.target.value]);}}	
+			/>
+
+			<ul class="list-group">
+			{saveText.map(elem=>{return <li class="container list-group-item col-8 bi bi-x-lg">{elem}<button type="button" class="btn-close" 
+			onClick={ (e)=>{this.delete(li)
+			}} aria-label="Close"></button></li>})}
+			</ul>
+			</div>
 		</div>
 	);
 };
 
 export default Home;
+
+
