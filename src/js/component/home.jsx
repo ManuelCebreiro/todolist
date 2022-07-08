@@ -30,7 +30,7 @@ export const TodoList = () => {
 				<ul class="list-group">
 					{list.map((item, index) => (
 						<li 
-							class="container list-group-item p-1 col-8 bi bi-x-lg"
+							class="container list-group-item p-1 col-8 bi bi-x-lg d-flex justify-content-between"
 							key={index}>
 								{item}
 							<button className="btn-close" onClick={() => DeleteItems(index)}>
